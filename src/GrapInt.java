@@ -13,6 +13,7 @@ public class GrapInt extends JFrame {
 
     public GrapInt() {
         super("BoberOffice Bydle");
+        setContentPane(mainPanel);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setSize(800, 400);
 
@@ -35,7 +36,7 @@ public class GrapInt extends JFrame {
 
         // Настраиваем textPane
         textPane.setText("Введите значение в ползунке");
-        textPane.setPreferredSize(new Dimension(700, 300)); // Увеличенный TextPane
+        textPane.setPreferredSize(new Dimension(700, 200)); // Увеличенный TextPane
 
         // Обработчик изменения значения слайдера
         slider.addChangeListener(new ChangeListener() {
@@ -49,9 +50,10 @@ public class GrapInt extends JFrame {
 
         // Настройка компоновки
         setLayout(new BorderLayout());
+
         add(slider, BorderLayout.CENTER);
         add(label, BorderLayout.SOUTH);
-        add(textPane, BorderLayout.NORTH);
+        add(new JScrollPane(textPane), BorderLayout.NORTH);
         add(formatBtn, BorderLayout.EAST);
 
         // Отображаем окно
