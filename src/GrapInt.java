@@ -18,20 +18,19 @@ public class GrapInt extends JFrame {
         setSize(800, 400);
 
         // Создаем слайдер
-        JSlider slider = new JSlider(30, 150, 90);
+        JSlider slider = new JSlider(10, 100, 55);
         slider.setPreferredSize(new Dimension(300, 40)); // Уменьшенный слайдер
         // Настраиваем ползунок
         slider.setMajorTickSpacing(20); // Основные отметки через каждые 20
         slider.setMinorTickSpacing(5);  // Дополнительные отметки через каждые 5
         slider.setPaintTicks(true);     // Отображение отметок
         slider.setPaintLabels(true);   // Отображение значений
-
         JMenuBar menuBar = new JMenuBar();
         menuBar.add(createFileMenu());
         setJMenuBar(menuBar);
 
         // Создаем метку для отображения значения
-        JLabel label = new JLabel("Значение: 90");
+        JLabel label = new JLabel("Значение: 55");
         label.setHorizontalAlignment(SwingConstants.CENTER);
 
         // Настраиваем textPane
