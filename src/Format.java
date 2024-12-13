@@ -59,8 +59,7 @@ public class Format {
             }
             // Добавляем последнюю строку
             if (!formattedLine.isEmpty()) {
-                removeLastBlank(formattedLine);
-                formattedText.add(removeLastBlank(formattedLine));
+                formattedText.add((formattedLine));
                 //formattedText.add(addBlankLines(removeLastBlank(formattedLine,lineLen)));
             }
         }
