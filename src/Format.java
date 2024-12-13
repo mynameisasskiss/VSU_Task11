@@ -9,7 +9,7 @@ public class Format {
         if(formattedLine.size() == 1) return formattedLine;
         String strng = formattedLine.stream().map(wrd -> String.join("", wrd)).collect(Collectors.joining());
         int len = strng.length();
-        System.out.println(len);
+        //System.out.println(len);
         while (len < lineLen) {
             for (int j = 0; j < formattedLine.size(); j++) {
                 if (len < lineLen) {
