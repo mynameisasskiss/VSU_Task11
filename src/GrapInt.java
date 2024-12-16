@@ -8,6 +8,8 @@ public class GrapInt extends JFrame {
     private JSlider slider;
     private JButton formatBtn;
     private JTextPane textPane;
+    private JLabel widthLabel;
+    private JButton fishBtn;
 
     public GrapInt() {
         super("BoberOffice Bydle");
@@ -18,24 +20,42 @@ public class GrapInt extends JFrame {
         menuBar.add(createFileMenu());
         setJMenuBar(menuBar);
 
+        widthLabel.setText("Ширина: " + slider.getValue());
+
         slider.setMajorTickSpacing(20); // Основные отметки через каждые 20
         slider.setMinorTickSpacing(5);  // Дополнительные отметки через каждые 5
         slider.setPaintTicks(true);     // Отображение отметок
         slider.setPaintLabels(true);   // Отображение значений
 
 
-        // Настраиваем textPane
-        textPane.setText("Введите значение в ползунке");
         textPane.setPreferredSize(new Dimension(550, 200)); // Увеличенный TextPane
 
         // Устанавливаем моноширинный шрифт
         Font monospacedFont = new Font("Courier New", Font.PLAIN, 14);
         textPane.setFont(monospacedFont);
 
-        formatBtn.addActionListener(e -> textPane.setText(Format.format(textPane.getText(), slider.getValue())));
+        slider.addChangeListener(e -> {
+            widthLabel.setText("Ширина: " + slider.getValue());
+        });
+
+        fishBtn.addActionListener(e -> {
+            try {
+                textPane.setText(FileIO.readStringFromFile("fishtext.txt"));
+                formatBtn.doClick();
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        });
+
+        formatBtn.addActionListener(e -> {
+            System.out.println(textPane.getText());
+            textPane.setText(Format.format(textPane.getText(), slider.getValue()));
+        });
 
         setLocationRelativeTo(null);
+
         pack();
+
         setVisible(true);
     }
 

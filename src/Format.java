@@ -25,7 +25,8 @@ public class Format {
     }
 
     private static List<String> removeLastBlank(List<String> formattedLine) {
-        formattedLine.set(formattedLine.size() - 1, formattedLine.get(formattedLine.size() - 1).substring(0, formattedLine.get(formattedLine.size() - 1).length() - 1));
+        int len = formattedLine.size();
+        formattedLine.set(len - 1, formattedLine.get(len - 1).substring(0, formattedLine.get(len - 1).length() - 1));
         return formattedLine;
     }
 
@@ -59,7 +60,7 @@ public class Format {
             }
             // Добавляем последнюю строку
             if (!formattedLine.isEmpty()) {
-                formattedText.add((formattedLine));
+                formattedText.add(removeLastBlank(formattedLine));
                 //formattedText.add(addBlankLines(removeLastBlank(formattedLine,lineLen)));
             }
         }
