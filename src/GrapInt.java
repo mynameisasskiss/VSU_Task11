@@ -1,30 +1,30 @@
 import javax.swing.*;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
 import java.awt.*;
-import java.awt.event.ComponentAdapter;
-import java.awt.event.ComponentEvent;
 import java.io.File;
 import java.io.IOException;
 
 public class GrapInt extends JFrame {
     private JPanel mainPanel;
-    private JSlider widthSlider;
+    private JSlider slider;
     private JButton formatBtn;
     private JTextPane textPane;
 
     public GrapInt() {
-        super("BoberReader Bydle");
+        super("BoberOffice Bydle");
         setContentPane(mainPanel);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setSize(500, 500);
 
         JMenuBar menuBar = new JMenuBar();
         menuBar.add(createFileMenu());
         setJMenuBar(menuBar);
 
+        slider.setMajorTickSpacing(20); // Основные отметки через каждые 20
+        slider.setMinorTickSpacing(5);  // Дополнительные отметки через каждые 5
+        slider.setPaintTicks(true);     // Отображение отметок
+        slider.setPaintLabels(true);   // Отображение значений
+
+
         // Настраиваем textPane
-        textPane = new JTextPane();
         textPane.setText("Введите значение в ползунке");
         textPane.setPreferredSize(new Dimension(550, 200)); // Увеличенный TextPane
 
@@ -32,16 +32,10 @@ public class GrapInt extends JFrame {
         Font monospacedFont = new Font("Courier New", Font.PLAIN, 14);
         textPane.setFont(monospacedFont);
 
-        formatBtn = new JButton("Форматировать");
-        formatBtn.addActionListener(e -> textPane.setText(Format.format(textPane.getText(), (mainPanel.getWidth()-10)/8)));
+        formatBtn.addActionListener(e -> textPane.setText(Format.format(textPane.getText(), slider.getValue())));
 
-        // Настройка компоновки
-        setLayout(new BorderLayout());
-
-        add(new JScrollPane(textPane), BorderLayout.NORTH);
-        add(formatBtn, BorderLayout.EAST);
-
-        // Отображаем окно
+        setLocationRelativeTo(null);
+        pack();
         setVisible(true);
     }
 
